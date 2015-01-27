@@ -4,6 +4,7 @@ also_reload('./lib/**/*.rb')
 require('sinatra/activerecord')
 require('pg')
 require('./lib/product')
+require('./lib/purchase')
 
 get ('/') do
   @products = Product.all()
@@ -44,5 +45,13 @@ end
 
 post('/total') do
   @params = params
+  @products =[]
+  product_ids = params["product_ids"]
+  product_ids.each do |id|
+    @products.push(Product.find(id.to_i()))
+  end
+  @purchase = Purchase.create({})
+  # @purchase.create(:product_ids => product_ids)
+  @purchase.products << @products
   erb(:total)
 end

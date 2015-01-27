@@ -11,5 +11,8 @@ RSpec.configure do |config|
     Product.all().each() do |product|
       product.destroy()
     end
+    Purchase.all().each() do |purchase|
+      purchase.destroy()
+    end
   end
 end
