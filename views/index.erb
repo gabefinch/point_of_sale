@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h4>Products: </h4>
+</div>
+  <% if @products.any? %>
+  <ul>
+    <% @products.each do |product| %>
+    <li><a href="/product/<%= product.id() %>/edit"><%= product.name %></a> Price: $<%= sprintf("%.2f", product.price) %></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <p>Add some products</p>
+  <% end %>
+
+
+  <form class="form-group" action="/products" method="post">
+    <label for="product">Add a product:</label>
+    <input id="product" name="product" type="text" placeholder="e.g. Tomatoes" autofocus>
+    <label for="price">Name its price:</label>
+    <input id="price" name="price" type="text" placeholder="e.g. 15.75" autofocus>
+
+    <button type="submit" class="btn btn-sm btn-primary">Add Product</button>
+
+  </form>
+<br>
+<div class="page-header">
+  <h4>Purchases: </h4>
+</div>
+<form action="/purchase" method="get">
+  <button type="submit" class="btn btn-sm btn-success">Create Purchase</button>
+</form>

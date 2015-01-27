@@ -1,0 +1,20 @@
+<h3>Edit or delete <%= @product.name %></h3>
+
+<form action="/product/<%= @product.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+  <label for="new_name">Edit product name:</label>
+  <input name="new_name" id="new_name" type="text" value="<%= @product.name() %>" autofocus>
+
+  <label for="new_price">Edit its price:</label>
+  <input id="new_price" name="new_price" type="text" value="<%= sprintf("%.2f", @product.price()) %>" autofocus>
+
+  <button type="submit" class="btn btn-sm btn-primary">Update Product</button>
+
+</form>
+
+<form action="/product/<%= @product.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit" class="btn btn-sm btn-danger">Delete Product</button>
+</form>

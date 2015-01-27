@@ -1,0 +1,6 @@
+<form class="form-group" action="/total" method="post">
+<% Product.all().each do |product| %>
+  <input type="checkbox" name="<%= product.id() %>" value="true"><%= product.name %><br> 
+<% end %>
+<button type="submit" class="btn btn-sm btn-success">Process Purchase</button>
+</form>
