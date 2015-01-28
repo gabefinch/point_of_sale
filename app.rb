@@ -55,3 +55,21 @@ post('/total') do
   @purchase.products << @products
   erb(:total)
 end
+
+get('/enter_dates') do
+
+  erb(:enter_dates)
+end
+
+get('/net_income') do
+  date_begin = params['date_begin']
+  date_end = params['date_end']
+  @purchases = Purchase.between(date_begin, date_end)
+  @grand_total = 0
+  @purchases.each do |purchase|
+    @grand_total = @grand_total + purchase.total
+  end
+  @grand_total
+  erb(:net_income)
+
+end
